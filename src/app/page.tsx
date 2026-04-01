@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Image from "next/image";
 import BottomNav from "@/components/BottomNav";
 import VariationModal from "@/components/VariationModal";
 import ForegroundNotification from "@/components/ForegroundNotification";
@@ -102,14 +103,23 @@ export default function TodayDashboard() {
       <header className="sticky top-0 z-40 bg-bg/90 backdrop-blur-md border-b border-white/5">
         <div className="max-w-lg mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-lg font-bold text-text">
-                Coach<span className="text-gold">-E</span>
-              </h1>
-              <p className="text-xs text-text-dim">
-                Week {weekNum} of 12 &middot;{" "}
-                {now.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" })}
-              </p>
+            <div className="flex items-center gap-2.5">
+              <Image
+                src="/logo.png"
+                alt="Natural Nutrition Coaching"
+                width={28}
+                height={33}
+                className="opacity-90"
+              />
+              <div>
+                <h1 className="text-lg font-bold text-text">
+                  Coach<span className="text-gold">-E</span>
+                </h1>
+                <p className="text-xs text-text-dim">
+                  Week {weekNum} of 12 &middot;{" "}
+                  {now.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" })}
+                </p>
+              </div>
             </div>
             <div className="text-right">
               <p className="text-xs text-text-dim">Compliance</p>
