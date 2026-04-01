@@ -3,15 +3,16 @@
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import BottomNav from "@/components/BottomNav";
+import { useAuthContext } from "@/components/AuthProvider";
 import { useNotifications } from "@/hooks/useNotifications";
 import { getOuraAuthUrl, getGmailAuthUrl } from "@/lib/oauth";
 
-// Placeholder userId until Firebase Auth is wired up
-const USER_ID = "demo-user";
-
 function SettingsContent() {
   const searchParams = useSearchParams();
+  const { user, signOut } = useAuthContext();
   const { status: notifStatus, requesting, requestPermission } = useNotifications();
+
+  const USER_ID = user.uid;
 
   const ouraConnected = searchParams.get("oura_connected") === "true";
   const ouraError = searchParams.get("oura_error");
@@ -42,8 +43,8 @@ function SettingsContent() {
       <div className="bg-bg-card rounded-xl p-4 border border-white/5 space-y-3">
         <p className="text-xs font-medium text-text-mid">👤 Profile</p>
         {[
-          { label: "Name", value: "Andrew Batten" },
-          { label: "Email", value: "ailandy216@gmail.com" },
+          { label: "Name", value: user.displayName || "Andrew Batten" },
+          { label: "Email", value: user.email || "—" },
           { label: "Program Start", value: "March 8, 2026" },
           { label: "Timezone", value: "America/Chicago" },
         ].map((field) => (
@@ -154,6 +155,14 @@ function SettingsContent() {
           View Protocol Details
         </button>
       </div>
+
+        {/* Sign Out */}
+        <button
+          onClick={signOut}
+          className="w-full py-3 rounded-xl text-sm font-medium bg-danger/10 text-danger hover:bg-danger/20 transition-colors"
+        >
+          Sign Out
+        </button>
     </main>
   );
 }
