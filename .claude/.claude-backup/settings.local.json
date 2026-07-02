@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv /Users/andybatten/Desktop/virtual-coach-e/VIRTUAL-COACH-E-BUILD-SPEC-v2.md /tmp/)",
+      "Bash(npx create-next-app@14 /Users/andybatten/Desktop/virtual-coach-e --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbo)",
+      "Bash(mv /Users/andybatten/Desktop/virtual-coach-e/.claude /tmp/.claude-backup)"
+    ]
+  }
+}
